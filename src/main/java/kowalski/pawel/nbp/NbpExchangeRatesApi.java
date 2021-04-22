@@ -1,22 +1,36 @@
 package kowalski.pawel.nbp;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.Optional;
 
-public class NbpExchangeRatesApi {
+public class NbpExchangeRatesApi implements Api{
 	
 	private DataParser parser;
 	private DataReader reader;
 	private DataRequester requester;
-	Calculator calculator = new Calculator();
-	
+	private Calculator calculator;
+	private DataGetter getter;
 
-	public BigDecimal calculateExchangeRateForADateFromNbp(Currency currencyCode, BigDecimal ammount, LocalDate date) {
-		requester = new NbpDataRequester(currencyCode.name(), date);
-		reader = new NbpDataReader(requester.requestData());
-		parser = new NbpReadDataParser(reader.readReceivedData());
-		return calculator.multiply(ammount, parser.getParsedReadData());
+	@Override
+	public Optional<BigDecimal> calculateExchange(Currency currencyCode,
+			BigDecimal ammount, LocalDate date) {
+		date = verifyDate(date);
+		parser = new NbpDataParser();
+		reader = new NbpDataReader();
+		requester = new NbpDataRequester();
+		calculator = new Multiplyer();
+		getter = new NbpDataGetter(calculator, requester, reader, parser);
+		return getter.receiveData(currencyCode, ammount, date);
+	}
+
+
+	private LocalDate verifyDate(LocalDate date) {
+		if (date.isAfter(LocalDate.now())) {
+			return LocalDate.now();
+		} else {
+			return date;
+		}
+		
 	}
 }

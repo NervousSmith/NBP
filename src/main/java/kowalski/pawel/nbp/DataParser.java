@@ -4,6 +4,6 @@ import java.math.BigDecimal;
 
 public interface DataParser {
 	
-	BigDecimal getParsedReadData();
+	BigDecimal getParsedReadData(String readData);
 
 }

@@ -11,6 +11,43 @@ import org.junit.Test;
 
 public class TestsForGettingCurrencyExchange {
 
-	NbpExchangeRatesApi apiForTesting;
+	Api apiForTesting;
+	
+	@Before
+	public void loadApi() {
+		apiForTesting = new NbpExchangeRatesApi();
+	}
 
+	
+	@Test
+	public void shouldReturnLatestRateFromNbp() {
+		
+	}
+	
+	@Test
+	public void shouldReturnFridayRateForSaurday() {
+		
+	}
+	
+	@Test
+	public void shouldReturnRateFromFridayForSunday() {
+		
+	}
+	
+	@Test
+	public void shouldReturnRateFromFridayBeforEaster() {
+		
+	}
+	
+	@Test 
+	public void shouldReturnLatestRateForFutureDate() {
+		
+	}
+	
+	@Test
+	public void shouldReturnNullForTooEarlyDate() {
+		
+	}
+	
+	
 }

@@ -13,14 +13,10 @@ public class NbpDataRequester implements DataRequester{
 	private String currencyCode;
 	private LocalDate date;
 	
-	public NbpDataRequester(String currencyCode, LocalDate date) {
-		super();
-		this.currencyCode = currencyCode;
-		this.date = date;
-	}
-	
 	@Override
-	public InputStreamReader requestData() {
+	public InputStreamReader requestData(Currency currencyCode, LocalDate date) {
+		this.currencyCode = currencyCode.name();
+		this.date = date;
 		return getStream();
 	}
 	
@@ -54,5 +50,4 @@ public class NbpDataRequester implements DataRequester{
 			return null;
 		}
 	}
-
 }
