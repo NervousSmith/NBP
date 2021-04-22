@@ -1,8 +1,10 @@
-package kowalski.pawel.nbp;
+package kowalski.pawel.nbp.NbpApi;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+import kowalski.pawel.nbp.interfaces.DataReader;
 
 public class NbpDataReader implements DataReader{
 

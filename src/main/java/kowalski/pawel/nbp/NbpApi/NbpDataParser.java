@@ -1,10 +1,12 @@
-package kowalski.pawel.nbp;
+package kowalski.pawel.nbp.NbpApi;
 
 import java.math.BigDecimal;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import kowalski.pawel.nbp.interfaces.DataParser;
 
 public class NbpDataParser implements DataParser{
 

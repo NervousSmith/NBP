@@ -1,4 +1,4 @@
-package kowalski.pawel.nbp;
+package kowalski.pawel.nbp.interfaces;
 
 import java.math.BigDecimal;
 

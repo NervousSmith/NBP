@@ -1,4 +1,4 @@
-package kowalski.pawel.nbp;
+package kowalski.pawel.nbp.NbpApi;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -6,6 +6,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
+
+import kowalski.pawel.nbp.interfaces.Currency;
+import kowalski.pawel.nbp.interfaces.DataRequester;
 
 public class NbpDataRequester implements DataRequester{
 

@@ -2,6 +2,8 @@ package kowalski.pawel.nbp;
 
 import java.math.BigDecimal;
 
+import kowalski.pawel.nbp.interfaces.Calculator;
+
 public class Multiplyer implements Calculator{
 
 
