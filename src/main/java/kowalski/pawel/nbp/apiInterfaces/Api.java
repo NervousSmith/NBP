@@ -1,4 +1,4 @@
-package kowalski.pawel.nbp.interfaces;
+package kowalski.pawel.nbp.apiInterfaces;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

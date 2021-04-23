@@ -4,11 +4,11 @@ import java.io.File;
 import java.math.BigDecimal;
 import java.util.Optional;
 
-import kowalski.pawel.nbp.interfaces.Calculator;
-import kowalski.pawel.nbp.interfaces.DataGetter;
-import kowalski.pawel.nbp.interfaces.DataParser;
-import kowalski.pawel.nbp.interfaces.DataReader;
-import kowalski.pawel.nbp.interfaces.DataRequester;
+import kowalski.pawel.nbp.apiInterfaces.Calculator;
+import kowalski.pawel.nbp.apiInterfaces.DataGetter;
+import kowalski.pawel.nbp.apiInterfaces.DataParser;
+import kowalski.pawel.nbp.apiInterfaces.DataReader;
+import kowalski.pawel.nbp.apiInterfaces.DataRequester;
 
 public class FromFileDataGetter implements DataGetter{
 

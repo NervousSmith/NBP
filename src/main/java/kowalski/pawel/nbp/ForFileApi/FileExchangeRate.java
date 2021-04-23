@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 import kowalski.pawel.nbp.Currency;
-import kowalski.pawel.nbp.interfaces.Api;
+import kowalski.pawel.nbp.apiInterfaces.Api;
 
 public class FileExchangeRate implements Api {
 

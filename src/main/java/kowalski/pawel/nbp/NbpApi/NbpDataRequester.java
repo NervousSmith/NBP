@@ -7,7 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 
-import kowalski.pawel.nbp.interfaces.DataRequester;
+import kowalski.pawel.nbp.apiInterfaces.DataRequester;
 
 public class NbpDataRequester implements DataRequester{
 

@@ -12,7 +12,7 @@ public class MainForTests {
 	public static void main(String[] args) {
 
 		NbpExchangeRatesApi api = new NbpExchangeRatesApi();
-		Optional<BigDecimal> result = api.calculateExchange(Currency.USD, new BigDecimal("23"), LocalDate.of(2001, 1 ,2));
+		Optional<BigDecimal> result = api.calculateExchange(Currency.USD, new BigDecimal("23"), LocalDate.now());
 		if(result.isPresent()) {
 			System.out.println(result.get().toString());
 		}else {

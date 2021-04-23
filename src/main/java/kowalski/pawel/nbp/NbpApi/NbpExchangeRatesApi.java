@@ -6,9 +6,9 @@ import java.util.Optional;
 
 import kowalski.pawel.nbp.Currency;
 import kowalski.pawel.nbp.Multiplyer;
-import kowalski.pawel.nbp.interfaces.Api;
-import kowalski.pawel.nbp.interfaces.Calculator;
-import kowalski.pawel.nbp.interfaces.DataGetter;
+import kowalski.pawel.nbp.apiInterfaces.Api;
+import kowalski.pawel.nbp.apiInterfaces.Calculator;
+import kowalski.pawel.nbp.apiInterfaces.DataGetter;
 
 public class NbpExchangeRatesApi implements Api{
 	
