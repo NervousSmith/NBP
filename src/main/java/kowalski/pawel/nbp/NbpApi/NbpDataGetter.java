@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import kowalski.pawel.nbp.Currency;
 import kowalski.pawel.nbp.interfaces.Calculator;
-import kowalski.pawel.nbp.interfaces.Currency;
 import kowalski.pawel.nbp.interfaces.DataGetter;
 import kowalski.pawel.nbp.interfaces.DataParser;
 import kowalski.pawel.nbp.interfaces.DataReader;
@@ -22,39 +22,41 @@ public class NbpDataGetter implements DataGetter {
 	private BigDecimal ammount;
 	private LocalDate date;
 
-	public NbpDataGetter(Calculator calculator, DataRequester requester, DataReader reader, DataParser parser) {
+	
+	public NbpDataGetter(Calculator calculator, 
+			Currency currencyCode, BigDecimal ammount, LocalDate date) {
 		super();
 		this.calculator = calculator;
-		this.requester = requester;
-		this.reader = reader;
-		this.parser = parser;
+		this.requester = new NbpDataRequester(currencyCode.name(), date);
+		this.reader = new NbpDataReader();
+		this.parser = new NbpDataParser();
+		this.currencyCode = currencyCode;
+		this.ammount = ammount;
+		this.date = date;
 	}
 
 	@Override
-	public Optional<BigDecimal> receiveData(Currency currencyCode, BigDecimal ammount, LocalDate date) {
-		this.date = date;
-		this.ammount = ammount;
-		this.currencyCode = currencyCode;
+	public Optional<BigDecimal> receiveData() {
 		return createOptionalWithResponse(currencyCode, ammount, date);
 	}
 
 	private Optional<BigDecimal> createOptionalWithResponse(Currency currencyCode, BigDecimal ammount, LocalDate date) {
 		Optional<BigDecimal> result = null;
 		try {
-			InputStreamReader tempReader = requester.requestData(currencyCode, date);
+			InputStreamReader tempReader = requester.requestData();
 			String tempString = reader.readReceivedData(tempReader);
 			BigDecimal calculationResult = calculator.calculate(ammount, parser.getParsedReadData(tempString));
 			result = Optional.ofNullable(calculationResult);
 		} catch (NullPointerException e) {
-			result = lookForEffect();
+			result = lookForEffect(date);
 		}
 		return result;
 	}
 
-	private Optional<BigDecimal> lookForEffect(){
+	private Optional<BigDecimal> lookForEffect(LocalDate dateToCheck){
 		Optional<BigDecimal> result = null;
 		for (int i = 1; i < 11; i++) {
-			result = checkDate(date.minusDays(i));
+			result = checkDate(dateToCheck.minusDays(i));
 			if (result.isPresent()) {
 				break;
 			} else if (result.isEmpty()) {
@@ -66,7 +68,7 @@ public class NbpDataGetter implements DataGetter {
 
 	private Optional<BigDecimal> checkDate(LocalDate dateToCheck) {
 		try {
-			InputStreamReader tempReader = requester.requestData(currencyCode, dateToCheck);
+			InputStreamReader tempReader = new NbpDataRequester(currencyCode.name(), dateToCheck).requestData();
 			String tempString = reader.readReceivedData(tempReader);
 			BigDecimal calculationResult = calculator.calculate(ammount, parser.getParsedReadData(tempString));
 			return Optional.ofNullable(calculationResult);

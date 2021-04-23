@@ -5,13 +5,13 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import kowalski.pawel.nbp.interfaces.Currency;
+import kowalski.pawel.nbp.NbpApi.NbpExchangeRatesApi;
 
 public class MainForTests {
 
 	public static void main(String[] args) {
 
-		ExchangeRatesApi api = new ExchangeRatesApi();
+		NbpExchangeRatesApi api = new NbpExchangeRatesApi();
 		Optional<BigDecimal> result = api.calculateExchange(Currency.USD, new BigDecimal("23"), LocalDate.of(2001, 1 ,2));
 		if(result.isPresent()) {
 			System.out.println(result.get().toString());

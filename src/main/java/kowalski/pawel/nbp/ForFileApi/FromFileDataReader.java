@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 
 import kowalski.pawel.nbp.interfaces.DataReader;
 
-public class FileReader implements DataReader {
+public class FromFileDataReader implements DataReader {
 
 	@Override
 	public String readReceivedData(InputStreamReader receivedData) {

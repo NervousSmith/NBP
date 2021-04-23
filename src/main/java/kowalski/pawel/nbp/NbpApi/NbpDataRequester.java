@@ -7,7 +7,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 
-import kowalski.pawel.nbp.interfaces.Currency;
 import kowalski.pawel.nbp.interfaces.DataRequester;
 
 public class NbpDataRequester implements DataRequester{
@@ -16,10 +15,14 @@ public class NbpDataRequester implements DataRequester{
 	private String currencyCode;
 	private LocalDate date;
 	
-	@Override
-	public InputStreamReader requestData(Currency currencyCode, LocalDate date) {
-		this.currencyCode = currencyCode.name();
+	public NbpDataRequester(String currencyCode, LocalDate date) {
+		super();
+		this.currencyCode = currencyCode;
 		this.date = date;
+	}
+
+	@Override
+	public InputStreamReader requestData() {
 		return getStream();
 	}
 	
