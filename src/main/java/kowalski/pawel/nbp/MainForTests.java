@@ -19,7 +19,6 @@ public class MainForTests {
 			System.out.println("Brak danych");
 		}
 			
-		File justAFile = new File("");
 	}
 
 }

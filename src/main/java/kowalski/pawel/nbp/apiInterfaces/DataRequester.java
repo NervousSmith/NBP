@@ -1,9 +1,9 @@
 package kowalski.pawel.nbp.apiInterfaces;
 
-import java.io.InputStreamReader;
+import java.time.LocalDate;
 
 public interface DataRequester {
 
-	InputStreamReader requestData() throws NullPointerException;
+	String requestData(String currencyCode, LocalDate date);
 	
 }

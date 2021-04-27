@@ -9,19 +9,19 @@ import kowalski.pawel.nbp.apiInterfaces.Api;
 
 public class NbpExchangeRatesApi implements Api {
 
-	NbpDataGetter getter = new NbpDataGetter(null, null, null);
+	NbpDataGetter getter;
 
 	@Override
 	public Optional<BigDecimal> calculateExchange(Currency currencyCode, 
 			BigDecimal ammount, LocalDate date) {
-		getter = new NbpDataGetter(currencyCode, ammount, date);
-		return getter.receiveData();
+		getter = new NbpDataGetter();
+		return getter.receiveData(currencyCode, ammount, date);
 	}
 
 	@Override
 	public Optional<BigDecimal> calculateExchange(Currency currencyCode, 
 			BigDecimal ammount) {
-		getter = new NbpDataGetter(currencyCode, ammount, LocalDate.now());
-		return getter.receiveData();
+		getter = new NbpDataGetter();
+		return getter.receiveData(currencyCode, ammount, LocalDate.now());
 	}
 }
