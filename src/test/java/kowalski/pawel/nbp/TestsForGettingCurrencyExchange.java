@@ -21,7 +21,7 @@ public class TestsForGettingCurrencyExchange {
 	}
 	
 	@Test
-	public void shouldReturnFridayRateForSaurday() {
+	public void shouldReturnFridayRateForSaturday() {
 		//given
 		Optional<BigDecimal> fridayRate =
 				apiForTesting.calculateExchange(Currency.USD, new BigDecimal("32"), LocalDate.of(2021, 4, 16));

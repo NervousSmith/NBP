@@ -5,38 +5,23 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 import kowalski.pawel.nbp.Currency;
-import kowalski.pawel.nbp.Multiplyer;
 import kowalski.pawel.nbp.apiInterfaces.Api;
-import kowalski.pawel.nbp.apiInterfaces.Calculator;
-import kowalski.pawel.nbp.apiInterfaces.DataGetter;
 
-public class NbpExchangeRatesApi implements Api{
-	
-	private Calculator calculator;
-	private DataGetter getter;
+public class NbpExchangeRatesApi implements Api {
+
+	NbpDataGetter getter = new NbpDataGetter(null, null, null);
 
 	@Override
-	public Optional<BigDecimal> calculateExchange(Currency currencyCode,
+	public Optional<BigDecimal> calculateExchange(Currency currencyCode, 
 			BigDecimal ammount, LocalDate date) {
-		date = verifyDate(date);
-		calculator = new Multiplyer();
-		getter = new NbpDataGetter(calculator, currencyCode, ammount, date);
+		getter = new NbpDataGetter(currencyCode, ammount, date);
 		return getter.receiveData();
 	}
 
 	@Override
-	public Optional<BigDecimal> calculateExchange(Currency currencyCode, BigDecimal ammount) {
-		calculator = new Multiplyer();
-		getter = new NbpDataGetter(calculator, currencyCode, ammount, LocalDate.now());
+	public Optional<BigDecimal> calculateExchange(Currency currencyCode, 
+			BigDecimal ammount) {
+		getter = new NbpDataGetter(currencyCode, ammount, LocalDate.now());
 		return getter.receiveData();
-	}
-
-	private LocalDate verifyDate(LocalDate date) {
-		if (date.isAfter(LocalDate.now())) {
-			return LocalDate.now();
-		} else {
-			return date;
-		}
-		
 	}
 }
