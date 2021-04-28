@@ -13,7 +13,7 @@ public class NbpDataParser implements DataParser {
 	private String receivedData;
 
 	@Override
-	public BigDecimal getParsedReadData(String receivedData) throws NullPointerException {
+	public BigDecimal parseReadData(String receivedData){
 		this.receivedData = receivedData;
 		return readRate();
 	}
@@ -26,7 +26,7 @@ public class NbpDataParser implements DataParser {
 		}
 	}
 
-	private BigDecimal readRate() throws NullPointerException {
+	private BigDecimal readRate() {
 		JSONArray gotRate = createJsonFromReceivedString().getJSONArray("rates");
 		JSONObject tempJson = gotRate.getJSONObject(0);
 		return tempJson.getBigDecimal("mid");

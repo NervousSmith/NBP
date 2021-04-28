@@ -4,13 +4,15 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import kowalski.pawel.nbp.NbpApi.NbpExchangeRatesApi;
+import kowalski.pawel.nbp.NbpApi.NbpApi;
 
 public class SaleDocumentService {
 	
 	public void insert() {
-		NbpExchangeRatesApi apiForTesting = new NbpExchangeRatesApi();
-		Optional<BigDecimal> result = apiForTesting.calculateExchange(Currency.USD, new BigDecimal("23"), LocalDate.now());
+		NbpApi apiForTesting = new NbpApi();
+		Optional<BigDecimal> result = 
+				apiForTesting.calculateExchange(Currency.USD, new BigDecimal("23"),
+						LocalDate.now());
 		
 	}
 }
