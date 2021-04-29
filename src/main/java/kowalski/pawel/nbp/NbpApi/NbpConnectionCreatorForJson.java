@@ -5,7 +5,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class NbpConnectionCreatorForJson {
+import kowalski.pawel.nbp.apiInterfaces.ConnectionCreator;
+
+public class NbpConnectionCreatorForJson implements ConnectionCreator{
 
 	public InputStream createConnection(URL url) {
 		try {

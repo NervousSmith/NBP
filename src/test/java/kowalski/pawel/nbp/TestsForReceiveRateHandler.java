@@ -9,22 +9,23 @@ import java.util.List;
 import java.util.Optional;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
-import kowalski.pawel.nbp.NbpApi.NbpDataParser;
+import kowalski.pawel.nbp.apiInterfaces.DataParser;
 import kowalski.pawel.nbp.apiInterfaces.DataProvider;
 
 public class TestsForReceiveRateHandler {
 
-	NbpDataParser parser;
+	NbpDataParserMock parser;
 	NbpDataProviderMock provider;
 	
 	
 	@Before
 	public void load(){
-		parser = new NbpDataParser();
+		parser = new NbpDataParserMock();
 		provider = new NbpDataProviderMock();
 	}
 	
@@ -119,5 +120,30 @@ class NbpDataProviderMock implements DataProvider{
 		JSONArray gotRate = tempJson.getJSONArray("rates");
 		JSONObject tempJsonForDate = gotRate.getJSONObject(0);
 		return LocalDate.parse(tempJsonForDate.getString("effectiveDate"));
+	}
+}
+
+class NbpDataParserMock implements DataParser {
+
+	private String receivedData;
+
+	@Override
+	public BigDecimal parseReadData(String receivedData){
+		this.receivedData = receivedData;
+		return readRate();
+	}
+
+	private JSONObject createJsonFromReceivedString() {
+		try {
+			return new JSONObject(receivedData);
+		} catch (JSONException e) {
+			return new JSONObject();
+		}
+	}
+
+	private BigDecimal readRate() {
+		JSONArray gotRate = createJsonFromReceivedString().getJSONArray("rates");
+		JSONObject tempJson = gotRate.getJSONObject(0);
+		return tempJson.getBigDecimal("mid");
 	}
 }

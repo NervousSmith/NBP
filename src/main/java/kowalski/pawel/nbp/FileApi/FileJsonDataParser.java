@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import kowalski.pawel.nbp.apiInterfaces.DataParser;
 
-public class FileDataParser implements DataParser {
+public class FileJsonDataParser implements DataParser {
 
 	@Override
 	public BigDecimal parseReadData(String readData) {

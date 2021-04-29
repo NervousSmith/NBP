@@ -24,7 +24,9 @@ public class ReceiveRateHandler{
 		if(result.isEmpty()) {
 			result = lookForEffect(currencyCode.name(), date);
 		}
-		result.ifPresent(result2 -> result2.multiply(ammount));
+		if(result.isPresent()) {
+		 return Optional.ofNullable(result.get().multiply(ammount));
+		}
 		return result;
 	}
 

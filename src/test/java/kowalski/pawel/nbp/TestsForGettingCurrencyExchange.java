@@ -9,15 +9,17 @@ import java.util.Optional;
 import org.junit.Before;
 import org.junit.Test;
 
-import kowalski.pawel.nbp.NbpApi.NbpApi;
+import kowalski.pawel.nbp.NbpApi.NbpJsonStrategy;
+import kowalski.pawel.nbp.apiInterfaces.Strategy;
 
 public class TestsForGettingCurrencyExchange {
 
-	NbpApi apiForTesting;
+	ExchangeRateApi apiForTesting;
 	
 	@Before
 	public void loadApi() {
-		apiForTesting = new NbpApi();
+		Strategy useStrategy = new NbpJsonStrategy();
+		apiForTesting = new ExchangeRateApi(useStrategy);
 	}
 	
 	@Test

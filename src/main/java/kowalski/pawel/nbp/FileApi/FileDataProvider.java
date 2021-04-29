@@ -9,6 +9,12 @@ public class FileDataProvider implements DataProvider {
 
 	File fileToRead;
 	
+	public FileDataProvider(File fileToRead) {
+		this.fileToRead = fileToRead;
+	}
+
+
+
 	@Override
 	public String requestData(String currencyCode, LocalDate date) {
 		// TODO Auto-generated method stub

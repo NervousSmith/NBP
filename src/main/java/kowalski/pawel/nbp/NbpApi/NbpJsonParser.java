@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 import kowalski.pawel.nbp.apiInterfaces.DataParser;
 
-public class NbpDataParser implements DataParser {
+public class NbpJsonParser implements DataParser {
 
 	private String receivedData;
 

@@ -7,6 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 
+import kowalski.pawel.nbp.apiInterfaces.ConnectionCreator;
 import kowalski.pawel.nbp.apiInterfaces.DataProvider;
 
 public class NbpDataProvider implements DataProvider{
@@ -14,8 +15,13 @@ public class NbpDataProvider implements DataProvider{
 	private final String nbpApiLink = "http://api.nbp.pl/api/exchangerates/rates/a";
 	private String currencyCode;
 	private LocalDate date;
-	private NbpConnectionCreatorForJson connector = new NbpConnectionCreatorForJson();
+	private ConnectionCreator connector;
 
+	public NbpDataProvider(ConnectionCreator connectorToUse) {
+		this.connector = connectorToUse;
+	}
+	
+	
 	
 	@Override
 	public String requestData(String curremcyCode, LocalDate date) {
