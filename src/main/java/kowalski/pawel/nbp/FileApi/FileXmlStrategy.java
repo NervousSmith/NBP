@@ -6,17 +6,17 @@ import kowalski.pawel.nbp.apiInterfaces.DataParser;
 import kowalski.pawel.nbp.apiInterfaces.DataProvider;
 import kowalski.pawel.nbp.apiInterfaces.Strategy;
 
-public class FileJsonStrategy implements Strategy{
+public class FileXmlStrategy implements Strategy {
 
-	File fileToRead;
+File fileToRead;
 	
-	public FileJsonStrategy(File fileToRead) {
+	public FileXmlStrategy(File fileToRead) {
 		this.fileToRead = fileToRead;
 	}
 
 	@Override
 	public DataParser getParser() {
-		return new FileJsonParser();
+		return new FileXmlParser();
 	}
 
 	@Override
